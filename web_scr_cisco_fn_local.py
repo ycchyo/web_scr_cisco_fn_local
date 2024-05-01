@@ -23,9 +23,6 @@ def main():
     n = 0
     data = []
     for element in soup.find_all('a', href=True):
-        # for test
-        # if n == 6:
-        #     break
         link = element['href']
         title = element.find('span', class_='most_recent_link_title').string if element.find('span', class_='most_recent_link_title') else None
         head = "https://www.cisco.com/"
