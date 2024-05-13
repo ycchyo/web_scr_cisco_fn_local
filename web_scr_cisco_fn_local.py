@@ -41,7 +41,7 @@ def main():
             soup_FN = BeautifulSoup(html_FN.content, 'html.parser')
             # Get Date
             date = soup_FN.find('div', class_='updatedDate').text.split(':')[1].strip()
-            date_history = soup_FN.find('h3', text='Revision History')
+            date_history = soup_FN.find('h3', string="Revision History")
             table_elements = date_history.find_next('table')
             # print(table_element)
             # Get a date_history value
@@ -53,12 +53,12 @@ def main():
                     date_value = date_element.text.strip()
                     # print(f"Date Updated: {date_value}")
             # Get "Problem Description"
-            problem_description_section = soup_FN.find('h3', text='Problem Description')
+            problem_description_section = soup_FN.find('h3', string='Problem Description')
             #### Display text #####
             problem_description_text = problem_description_section.find_next('p').text.strip()
             # print('Problem Description:', problem_description_text)
             # Get "Problem Description" section
-            workaround_section = soup_FN.find('h3', text='Workaround/Solution')
+            workaround_section = soup_FN.find('h3', string='Workaround/Solution')
             # Workaroundのpタグを全表示してテキスト #####
             workaround_text = workaround_section.find_next_siblings('p')
             workaround_draft = ""
@@ -66,13 +66,13 @@ def main():
                 workaround_draft += p_tag.get_text().strip() + "\n"
 
             # Get "Defect Information" section
-            defect_section = soup_FN.find('h3', text='Defect Information')
+            defect_section = soup_FN.find('h3', string='Defect Information')
             defect_description = defect_section.find_next('table')
             for row in defect_description.find_all('tr')[1:]:
                 defect_link = row.find('a')['href']
             # print(defect_description)
             # "Products Affected"のセクションを検出
-            affected_section = soup_FN.find('h3', text='Products Affected')
+            affected_section = soup_FN.find('h3', string='Products Affected')
             affected_contents = affected_section.find_all_next('table')
             # affected_contents2 = affected_section.find_next_sibling('table')
             # print(affected_contents)
