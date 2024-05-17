@@ -31,6 +31,8 @@ def main():
         else:
             #### Print number and description, URL #####
             n += 1
+            if n % 10 == 0:
+                print(f"Executing list creation process{'.' * n}")
             # print(f'{n}\n{title}\n{date}\n{head}{link["href"]}')
             category = title.split(":Field Notice")[0]
             title = title.split(":Field Notice")[1]
@@ -144,6 +146,8 @@ def main():
     worksheet.set_column('J:J', 150, cell_format)
     # Excel Close
     writer.close()
+    print("処理は正常に終了しました")
+    exit()
 
 if __name__ == '__main__':
     main()
